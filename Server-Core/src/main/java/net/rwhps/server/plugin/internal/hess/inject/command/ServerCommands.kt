@@ -154,8 +154,20 @@ internal class ServerCommands(handler: CommandHandler) {
                 player.team = team
             }
         }
+        handler.register("summon", "<unitName> <PlayerPositionNumber>", "clientCommands.summon") { args: Array<String>, player: PlayerHess ->
+            val unit = args[0]
+            val site = arg[1].toInt() - 1
+            val player = room.playerManage.getPlayerArray(site)
+            if (player != null) {
+                player.sendSystemMessage("Ping map to spawn")
+                player.addData("Summon", unit)
+            }
+            if (!room.isStartGame) {
+                player.sendSystemMessage(player.i18NBundle.getinput("err.noStartGame"))
+                return@register
+            }
+        }
     }
-
     private fun registerPlayerStatusCommand(handler: CommandHandler) {
         handler.register("players", "serverCommands.players") { _: Array<String>?, log: StrCons ->
             if (room.playerManage.playerGroup.size == 0) {
