@@ -267,7 +267,7 @@ internal class ClientCommands(handler: CommandHandler) {
                 }
             }
         }
-        handler.register("summon", "<unitName>", "clientCommands.kick") { args: Array<String>, player: PlayerHess ->
+        handler.register("summon", "<unitName>", "clientCommands.summon") { args: Array<String>, player: PlayerHess ->
             if (!room.isStartGame) {
                 player.sendSystemMessage(player.i18NBundle.getinput("err.noStartGame"))
                 return@register
