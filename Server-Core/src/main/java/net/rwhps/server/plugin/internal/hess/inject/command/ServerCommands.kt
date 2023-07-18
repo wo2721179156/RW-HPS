@@ -154,7 +154,7 @@ internal class ServerCommands(handler: CommandHandler) {
                 player.team = team
             }
         }
-        handler.register("summon", "<unitName> <PlayerPositionNumber>", "clientCommands.summon") { args: Array<String>, player: PlayerHess ->
+        handler.register("summon", "<unitName> <PlayerPositionNumber>", "serverCommands.summon") { args: Array<String>, player: PlayerHess ->
             val unit = args[0]
             val site = arg[1].toInt() - 1
             val player = room.playerManage.getPlayerArray(site)
